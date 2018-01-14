@@ -6,6 +6,12 @@ public class Board : MonoBehaviour {
   public Transform m_emptySprite;
   public int m_height = 30, m_width = 10, m_header = 8;
 
+  Transform[,] m_grid;
+
+  void Awake() {
+    m_grid = new Transform[m_width, m_height];
+  }
+
   void Start() {
     DrawEmptyCells();
   }
