@@ -7,7 +7,7 @@ public class Board : MonoBehaviour {
   public int m_height = 30, m_width = 10, m_header = 8;
 
   void Start() {
-
+    DrawEmptyCells();
   }
 
   void DrawEmptyCells() {
