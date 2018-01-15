@@ -32,12 +32,5 @@ public class Shape : MonoBehaviour {
       transform.Rotate(0, 0, -90);
     }
   }
-
-  void Start() {
-
-  }
-
-  void Update() {
-
-  }
+  
 }
