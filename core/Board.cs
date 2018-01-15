@@ -36,4 +36,19 @@ public class Board : MonoBehaviour {
     return(m_grid[x, y] != null && m_grid[x, y].parent != shape.transform);
   }
 
+  public bool IsValidPosition(Shapes shape) {
+    foreach(Transform child in shape.transform) {
+      Vector2 pos = Vectorf.Round(child.position);
+
+      if(!IsWithinBoard((int)pos.x, (int)pos.y)) {
+        return false;
+      }
+
+      if(IsOccupied((int)pos.x, (int)pos.y, shape)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 }
