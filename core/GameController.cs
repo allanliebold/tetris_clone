@@ -69,9 +69,28 @@ public class GameController : MonoBehavious {
       m_dropInterval = m_dropInterval / 4;
     }
 
+
     if(Input.GetButtonUp("MoveDown")) {
       m_dropInterval = m_dropInterval * 4;
     }
+
+    if(Time.time > m_timeToDrop) {
+      m_timeToDrop = Time.time + m_dropInterval;
+      if(m_activeShape) {
+        m_activeShape.MoveDown();
+
+        if(!m_gameBoard.IsValidPosition(m_activeShape)) {
+          LandShape();
+        }
+      }
+    }
   }
 
+  void LandShape() {
+    m_timeToNextKey = Time.time;
+    m_activeShape.MoveUp();
+    m_gameBoard.StoreShapeInGrid(m_activeShape);
+    m_activeShape = m_spawner.SpawnShape();
+    m_gameBoard.ClearAllRows();
+  }
 }
