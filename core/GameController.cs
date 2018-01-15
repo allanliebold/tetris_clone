@@ -46,6 +46,14 @@ public class GameController : MonoBehavious {
           m_activeShape.MoveLeft();
         }
     }
+
+    if(Input.GetButton("MoveLeft") && Time.time > m_timeToNextKey || Input.GetButtonDown("MoveLeft")) {
+        m_activeShape.MoveLeft();
+        m_timeToNextKey = Time.time + m_keyRepeatRate;
+
+        if(!m_gameBoard.IsValidPosition(m_activeShape)) {
+          m_activeShape.MoveRight();
+        }
   }
 
 }
