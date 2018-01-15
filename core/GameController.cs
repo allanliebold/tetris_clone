@@ -8,6 +8,11 @@ public class GameController : MonoBehavious {
 
   Shapes m_activeShape;
 
+  float m_dropInterval = 0.25f, m_timeToDrop;
+
+  [Range(0.02f, 1f)]
+  public float m_keyRepeatRate = 0.25f;
+
   void Start() {
     m_gameBoard = FindObjectOfType<Board>();
     m_spawner = FindObjectOfType<Spawner>();
