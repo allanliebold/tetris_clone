@@ -51,4 +51,15 @@ public class Board : MonoBehaviour {
     return true;
   }
 
+  public void StoreShapeInGrid(Shapes shape) {
+    if(shape == null) {
+      return;
+    }
+
+    foreach(Transform child in shape.transform) {
+      Vector2 pos = Vectorf.Round(child.position);
+      m_grid[(int)pos.x, (int)pos.y] = child;
+    }
+  }
+
 }
