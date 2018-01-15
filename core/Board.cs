@@ -16,9 +16,6 @@ public class Board : MonoBehaviour {
     DrawEmptyCells();
   }
 
-  bool IsWithinBoard(int x, int y) {
-    return(x >= 0 && x < m_width && y >=0);
-  }
 
   void DrawEmptyCells() {
     for(int y = 0; y < m_height - m_header; y++) {
@@ -30,4 +27,13 @@ public class Board : MonoBehaviour {
       }
     }
   }
+
+  bool IsWithinBoard(int x, int y) {
+    return(x >= 0 && x < m_width && y >=0);
+  }
+
+  bool IsOccupied(int x, int y, Shapes shape) {
+    return(m_grid[x, y] != null && m_grid[x, y].parent != shape.transform);
+  }
+
 }
