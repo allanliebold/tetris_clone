@@ -14,4 +14,15 @@ public class Spawner : MonoBehaviour {
       return null;
     }
   }
+
+  public Shapes SpawnShape() {
+    Shapes shape = null;
+    shape = Instantiate(GetRandomShape(), transform.position, Quaternion.identity) as Shapes;
+    if(shape) {
+      return shape;
+    } else {
+      Debig.LogWarning("Warning! Invalid shape in spawner");
+      return null;
+    }
+  }
 }
