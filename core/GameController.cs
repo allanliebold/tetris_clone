@@ -8,7 +8,7 @@ public class GameController : MonoBehavious {
 
   Shapes m_activeShape;
 
-  float m_dropInterval = 0.25f, m_timeToDrop;
+  float m_dropInterval = 0.25f, m_timeToDrop, m_timeToNextKey;
 
   [Range(0.02f, 1f)]
   public float m_keyRepeatRate = 0.25f;
@@ -16,6 +16,7 @@ public class GameController : MonoBehavious {
   void Start() {
     m_gameBoard = FindObjectOfType<Board>();
     m_spawner = FindObjectOfType<Spawner>();
+    m_timeToNextKey = Time.time;
 
     if(m_spawner) {
       m_spawner.transform.position = Vectorf.Round(m_spawner.transform.position);
@@ -29,6 +30,22 @@ public class GameController : MonoBehavious {
   }
 
   void Update() {
+    if(!m_gameBoard || !m_spawner || !m_activeShape) {
+      return;
+    }
 
+    PlayerInput();
   }
+
+  void PlayerInput() {
+    if(Input.GetButton("MoveRight") && Time.time > m_timeToNextKey || Input.GetButtonDown("MoveRight")) {
+        m_activeShape.MoveRight();
+        m_timeToNextKey = Time.time + m_keyRepeatRate;
+
+        if(!m_gameBoard.IsValidPosition(m_activeShape)) {
+          m_activeShape.MoveLeft();
+        }
+    }
+  }
+
 }
