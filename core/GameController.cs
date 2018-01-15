@@ -64,7 +64,14 @@ public class GameController : MonoBehavious {
         m_activeShape.RotateLeft();
       }
     }
-    
+
+    if(Input.GetButtonDown("MoveDown")) {
+      m_dropInterval = m_dropInterval / 4;
+    }
+
+    if(Input.GetButtonUp("MoveDown")) {
+      m_dropInterval = m_dropInterval * 4;
+    }
   }
 
 }
