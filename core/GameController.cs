@@ -104,4 +104,8 @@ public class GameController : MonoBehavious {
       m_gameOverPanel.SetActive(true);
     }
   }
+
+  public void Restart() {
+    Application.LoadLevel(Application.loadedLevel);
+  }
 }
