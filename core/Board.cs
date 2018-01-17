@@ -71,4 +71,13 @@ public class Board : MonoBehaviour {
     return true;
   }
 
+  void ClearRow(int y) {
+    for(int x = 0; x < m_width; ++x) {
+      if(m_grid[x, y] != null) {
+        Destroy(m_grid[x, y].gameObject);
+      }
+      m_grid[x, y] = null;
+    }
+  }
+  
 }
