@@ -95,5 +95,15 @@ public class Board : MonoBehaviour {
       ShiftRowDown(i);
     }
   }
-  
+
+  public void ClearAllRows() {
+    for(int y = 0; y < m_height; ++y) {
+      if(RowComplete(y)) {
+        ClearRow(y);
+        ShiftMultipleRowsDown(y + 1);
+        y--;
+      }
+    }
+  }
+
 }
