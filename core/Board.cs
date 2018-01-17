@@ -62,4 +62,13 @@ public class Board : MonoBehaviour {
     }
   }
 
+  bool RowComplete(int y) {
+    for(int x = 0; x < m_width; ++x) {
+      if(m_grid[x, y] == null) {
+        return false;
+      }
+    }
+    return true;
+  }
+
 }
