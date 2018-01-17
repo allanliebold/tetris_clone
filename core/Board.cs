@@ -90,4 +90,10 @@ public class Board : MonoBehaviour {
     }
   }
 
+  void ShiftMultipleRowsDown(int startY) {
+    for(int i = startY; i < m_height; ++i) {
+      ShiftRowDown(i);
+    }
+  }
+  
 }
