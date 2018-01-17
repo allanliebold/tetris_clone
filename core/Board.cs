@@ -79,5 +79,15 @@ public class Board : MonoBehaviour {
       m_grid[x, y] = null;
     }
   }
-  
+
+  void shiftRowDown(int y) {
+    for(int x = 0; x < m_width; ++x) {
+      if(m_grid[x, y] != null) {
+        m_grid[x, y - 1] = m_grid[x, y];
+        m_grid[x, y] = null;
+        m_grid[x, y - 1].position += new Vector3(0, -1, 0);
+      }
+    }
+  }
+
 }
