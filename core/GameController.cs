@@ -80,7 +80,10 @@ public class GameController : MonoBehavious {
         m_activeShape.MoveDown();
 
         if(!m_gameBoard.IsValidPosition(m_activeShape)) {
-          LandShape();
+          if( m_gameBoard.OverLimit(m_activeShape)) {
+            GameOver();
+          } else {
+            LandShape();
         }
       }
     }
@@ -92,5 +95,13 @@ public class GameController : MonoBehavious {
     m_gameBoard.StoreShapeInGrid(m_activeShape);
     m_activeShape = m_spawner.SpawnShape();
     m_gameBoard.ClearAllRows();
+  }
+
+  void GameOver() {
+    m_activeShape.MoveUp();
+    m_gameOver = true;
+    if(m_gameOverPanel) {
+      m_gameOverPanel.SetActive(true);
+    }
   }
 }
